@@ -1,15 +1,27 @@
+sudo: required
+dist: trusty
+addons:
+  chrome: stable
 language: node_js
-os: osx
+#linux may work now
+#os: osx
 node_js:
   - 10
+jdk:
+  - oraclejdk8
 cache:
   npm: true # this cashes ~/.npm folder on Travis
   directories:
     # we also need to cache folder with Cypress binary
     - ~/.cache
+before_install:
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
 install:
   - npm ci
 
 script:
-  - npm run test:unit
+  # Temporarily remove unit testing
+  #- npm run test:unit
   - npm run test:e2e -- --headless
