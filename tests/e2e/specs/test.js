@@ -25,6 +25,29 @@ module.exports = {
       .mouseButtonDown(0)
       .moveToElement('#graphContainer svg', 300, 200)
       .mouseButtonUp(0)
+      .moveToElement('[title="Leaf Feature"]', 0, 0)
+      .mouseButtonDown(0)
+      .moveToElement('#graphContainer svg', 500, 200)
+      .mouseButtonUp(0)
+      .pause(50)
+      .useXpath()
+      //https://stackoverflow.com/questions/2994198/xpath-to-return-only-elements-containing-the-text-and-not-its-parents
+      //https://groups.google.com/forum/#!topic/nightwatchjs/JvA2QLPGVFU
+      .moveToElement('//*/text()[normalize-space(.)="leaf"]/parent::*', 5, 5)
+      .mouseButtonDown(0)
+      .moveToElement('//*/text()[normalize-space(.)="root"]/parent::*', 5, 5)
+      .mouseButtonUp(0)
+      .useCss()
+      .click('#buttonSAVE')
+      .pause(100)
+      .click('.modal-container button')
+      .pause(100)
+      .useXpath()
+      .click('//div[@class="tabs"]//*/text()[normalize-space(.)="component"]/parent::*')
+
+      //.element('xpath', '//*/text()[normalize-space(.)="root"]/parent::*', result => {
+      //  console.log(result)
+      //})
       .pause(9000)
       .end()
   }
