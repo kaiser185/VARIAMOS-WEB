@@ -44,7 +44,12 @@ module.exports = {
       .pause(100)
       .useXpath()
       .click('//div[@class="tabs"]//*/text()[normalize-space(.)="component"]/parent::*')
-
+      .execute(function() {
+        return window.localStorage.getItem('Domain - nightwatch');
+      }, [], function(result) {
+        this.assert.equal(result.status, 0)
+        this.assert.notStrictEqual(result.value, '')
+      })
       //.element('xpath', '//*/text()[normalize-space(.)="root"]/parent::*', result => {
       //  console.log(result)
       //})
