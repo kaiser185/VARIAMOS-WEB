@@ -1,5 +1,6 @@
 let component_main = function component_main(graph)
 {
+	component_custom_markers();
 	component_constraints(graph);
 	let data={};
 	data["m_type"]="normal"; //custom type
@@ -13,7 +14,11 @@ let component_main = function component_main(graph)
 	function component_constraints(graph){
 		graph.multiplicities=[]; //reset multiplicities
 		graph.multiplicities.push(new mxMultiplicity(
-			true, "component", null, null, 0, 0, null,
+			true, "component", null, null, 0, null, ["interface"],
+			"Invalid connection",
+			"Only shape targets allowed"));	
+		graph.multiplicities.push(new mxMultiplicity(
+			true, "interface", null, null, 0, 1, ["component"],
 			"Invalid connection",
 			"Only shape targets allowed"));
 		graph.multiplicities.push(new mxMultiplicity(
@@ -35,12 +40,14 @@ let component_main = function component_main(graph)
 		let file = {src:projectPath+"images/models/component/file.png", wd:100, hg:40, style:"shape=file", type:"file", pname:"File"};
 		let fragment = {src:projectPath+"images/models/component/fragment.png", wd:100, hg:40, style:"shape=fragment", type:"fragment", pname:"Fragment"};
 		let custom = {src:projectPath+"images/models/component/custom.png", wd:100, hg:40, style:"shape=custom", type:"custom", pname:"Custom. file"};
+		const exposedInterface = {src:projectPath+"images/models/feature/bundle.png", wd:50, hg:50, style:"shape=ellipse", type:"interface", pname:"Interface"}
 
 		let elements=[];
 		elements[0]=component;
 		elements[1]=file;
 		elements[2]=fragment;
 		elements[3]=custom;
+		elements.push(exposedInterface);
 		
 		return elements;
 	}
@@ -78,6 +85,24 @@ let component_main = function component_main(graph)
 		return clons;
 	}
 
+	function component_custom_markers(){
+		mxMarker.addMarker('requires', function(canvas, shape, type, pe, unitX, unitY, size, source, sw, filled){
+			let nx = unitX * (size + sw + 10);
+			let ny = unitY * (size + sw + 10);
+	  
+			return function() {
+			  canvas.begin();
+			  let x1 = pe.x - nx / 2 - ny / 2;
+			  let y1 = pe.y - ny / 2 + nx / 2;
+			  canvas.moveTo(x1, y1);
+			  let x2 = pe.x + ny / 2 -  nx / 2;
+			  let y2 = pe.y - ny / 2 - nx / 2;
+			  canvas.lineTo(x2, y2);
+			  canvas.stroke();
+			}
+		  })
+	}
+
 	function component_relation_styles(){
 		var relations=[];
 		relations.push({
@@ -86,6 +111,18 @@ let component_main = function component_main(graph)
 		  "target":["file"],
 		  "style":"dashed=1;endArrow=open;strokeColor=red;"
 		});
+		relations.push({
+			"source":["component"],
+			"rel_source_target":"and",
+			"target":["interface"],
+			"style":"endArrow=requires"
+		});
+		relations.push({
+			"source":["interface"],
+			"rel_source_target":"and",
+			"target":["component"],
+			"style":"dashed=1;endArrow=none;"
+		  });
 
 		return relations;
 	}

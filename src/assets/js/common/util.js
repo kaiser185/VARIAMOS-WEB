@@ -106,6 +106,18 @@ export function modalComponentInformation(structure, idx_cat, idx_subcat){
         } else if(element.element_type === 'textarea'){
             input = document.createElement('textarea');
             input.cols = 50;
+
+            const a = [];
+            a.forEach
+
+            if(element.interfaces !== undefined){
+                let str = '[';
+                element.interfaces.forEach((int, idx) => {
+                    str = str + int + (idx < element.interfaces.length - 1 ? ', ' : '');
+                })
+                str = str + ']';
+                input.innerText = str;
+            }
         } else {
             alert("A problem occurred");
         }
