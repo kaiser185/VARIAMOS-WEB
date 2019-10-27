@@ -293,7 +293,7 @@ let istar_main = function istar_main(graph)
     const attack = {src:projectPath+"images/models/istar/attack.png", wd:100, hg:100, style:"shape=attack;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"attack", pname:"Attack"};
     const vulnerability = {src:projectPath+"images/models/istar/vulnerability.png", wd:125, hg:50, style:"shape=vulnerability;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"vulnerability", pname:"Vulnerability"};
     
-    const organization = {src:projectPath+"images/models/component/file.png", wd:250, hg:250, style:"shape=rectangle;fillColor=none;dashed=1;dashPattern=10 10;rounded=1;arcSize=15;verticalAlign=top;fontColor=black;fontSize=20;fontStyle=1;", type:"organization", pname:"Organization"}
+    const organization = {src:projectPath+"images/models/component/file.png", wd:250, hg:250, style:"shape=rectangle;fillColor=none;dashed=1;dashPattern=10 10;rounded=1;arcSize=15;verticalAlign=top;fontColor=black;fontSize=20;fontStyle=1;", type:"organization", pname:"Organization"};
 
 		let elements=[];
 		elements.push(actor);

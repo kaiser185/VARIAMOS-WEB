@@ -1,5 +1,4 @@
 import { setupModal, modalH3, modalComponentInformation, modalButton } from '../../../common/util'
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 let setup_events = function setup_events(graph){
 
@@ -27,8 +26,8 @@ let setup_events = function setup_events(graph){
                     structure = map_element.structure;
                     //Recalculate dynamic properties.
                     const interfaces = get_interfaces(cell);
-                    structure.basic_information.interfaces[0].interfaces = interfaces.exposed;
-                    structure.basic_information.interfaces[1].interfaces = interfaces.required;
+                    structure.basic_information.interfaces[1].interfaces = interfaces.exposed;
+                    structure.basic_information.interfaces[2].interfaces = interfaces.required;
                     //Reset indexes
                     map_element.idx_cat = 0;
                     map_element.idx_subcat = 0;
