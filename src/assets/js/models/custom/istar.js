@@ -277,25 +277,68 @@ let istar_main = function istar_main(graph)
   }
 
 	function istar_elements(){
-    let actor = {src:projectPath+"images/models/istar/Actor.png", wd:100, hg:100, style:"shape=actor;perimeter=ellipsePerimeter;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"actor", pname:"Actor"};
-    let agent = {src:projectPath+"images/models/istar/Agent.png", wd:100, hg:100, style:"shape=agent;perimeter=ellipsePerimeter;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"agent", pname:"Agent"};
-    let role = {src:projectPath+"images/models/istar/Role.png", wd:100, hg:100, style:"shape=role;perimeter=ellipsePerimeter;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"role", pname:"Role"};
-    let goal = {src:projectPath+"images/models/istar/Goal.png", wd:125, hg:50, style:"shape=goal;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"goal", pname:"Goal"};
-    let quality = {src:projectPath+"images/models/istar/Quality.png", wd:125, hg:50, style:"shape=quality;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"quality", pname:"Quality"};
-		let task = {src:projectPath+"images/models/istar/Task.png", wd:125, hg:50, style:"shape=task;html=1;whiteSpace=wrap;;overflow=visible;fontColor=black;", type:"task", pname:"Task"};
-    let resource = {src:projectPath+"images/models/istar/Resource.png", wd:125, hg:50, style:"shape=resource;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"resource", pname:"Resource"};
+    let actor = 
+      {src:projectPath+"images/models/istar/Actor.png", wd:100, hg:100, 
+        style:"shape=actor;perimeter=ellipsePerimeter;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", 
+        type:"actor", pname:"Actor"};
+    let agent = 
+      {src:projectPath+"images/models/istar/Agent.png", wd:100, hg:100, 
+        style:"shape=agent;perimeter=ellipsePerimeter;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", 
+        type:"agent", pname:"Agent"};
+    let role = 
+      {src:projectPath+"images/models/istar/Role.png", wd:100, hg:100, 
+        style:"shape=role;perimeter=ellipsePerimeter;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", 
+        type:"role", pname:"Role"};
+    let goal = 
+      {src:projectPath+"images/models/istar/Goal.png", wd:125, hg:50, 
+        style:"shape=goal;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", 
+        type:"goal", pname:"Goal"};
+    let quality = 
+      {src:projectPath+"images/models/istar/Quality.png", wd:125, hg:50, 
+        style:"shape=quality;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", 
+        type:"quality", pname:"Quality"};
+    let task = 
+      {src:projectPath+"images/models/istar/Task.png", wd:125, hg:50, 
+        style:"shape=task;html=1;whiteSpace=wrap;;overflow=visible;fontColor=black;", 
+        type:"task", pname:"Task"};
+    let resource = 
+      {src:projectPath+"images/models/istar/Resource.png", wd:125, hg:50, 
+      style:"shape=resource;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", 
+      type:"resource", pname:"Resource"};
     
     //tests
-    const securityConstraint = {src:projectPath+"images/models/istar/sconstraint.png", wd:100, hg:100, style:"shape=secconstraint;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"secconstraint", pname:"Security Constraint"};
-    const securityObjective = {src:projectPath+"images/models/istar/sobjective.png", wd:100, hg:100, style:"shape=secobjective;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"secobjective", pname:"Security Objective"};
-    const securityMechanism = {src:projectPath+"images/models/istar/smechanism.png", wd:125, hg:50, style:"shape=secmechanism;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"secmechanism", pname:"Security Mechanism"};
-    const threat = {src:projectPath+"images/models/istar/threat.png", wd:100, hg:100, style:"shape=threat;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"threat", pname:"Threat"};
-    const attack = {src:projectPath+"images/models/istar/attack.png", wd:100, hg:100, style:"shape=attack;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"attack", pname:"Attack"};
-    const vulnerability = {src:projectPath+"images/models/istar/vulnerability.png", wd:125, hg:50, style:"shape=vulnerability;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", type:"vulnerability", pname:"Vulnerability"};
+    const securityConstraint = 
+      {src:projectPath+"images/models/istar/sconstraint.png", wd:100, hg:100, 
+        style:"shape=secconstraint;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", 
+        type:"secconstraint", pname:"Security Constraint"};
+    const securityObjective = 
+      {src:projectPath+"images/models/istar/sobjective.png", wd:100, hg:100, 
+        style:"shape=secobjective;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", 
+        type:"secobjective", pname:"Security Objective"};
+    const securityMechanism = 
+      {src:projectPath+"images/models/istar/smechanism.png", wd:125, hg:50, 
+        style:"shape=secmechanism;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", 
+        type:"secmechanism", pname:"Security Mechanism"};
+    const threat = 
+      {src:projectPath+"images/models/istar/threat.png", wd:100, hg:100, 
+        style:"shape=threat;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", 
+        type:"threat", pname:"Threat"};
+    const attack = 
+      {src:projectPath+"images/models/istar/attack.png", wd:100, hg:100, 
+        style:"shape=attack;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", 
+        type:"attack", pname:"Attack"};
+    const vulnerability = 
+      {src:projectPath+"images/models/istar/vulnerability.png", wd:125, hg:50, 
+        style:"shape=vulnerability;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", 
+        type:"vulnerability", pname:"Vulnerability"};
     
-    const organization = {src:projectPath+"images/models/component/file.png", wd:250, hg:250, style:"shape=rectangle;fillColor=none;dashed=1;dashPattern=10 10;rounded=1;arcSize=15;verticalAlign=top;fontColor=black;fontSize=20;fontStyle=1;", type:"organization", pname:"Organization"};
+    const organization = 
+      {src:projectPath+"images/models/component/file.png", wd:250, hg:250, 
+        style:"shape=rectangle;fillColor=none;dashed=1;dashPattern=10 10;rounded=1;arcSize=15;verticalAlign=top;fontColor=black;fontSize=20;fontStyle=1;", 
+        type:"organization", pname:"Organization"};
 
-		let elements=[];
+    let elements=[];
+    //IStar
 		elements.push(actor);
     elements.push(agent);
     elements.push(role);
@@ -303,16 +346,14 @@ let istar_main = function istar_main(graph)
     elements.push(quality);
     elements.push(task);
     elements.push(resource);
-
-    
-    //tests
+    //SecureTropos
     elements.push(securityConstraint);
     elements.push(securityObjective);
     elements.push(securityMechanism);
     elements.push(threat);
     elements.push(attack);
     elements.push(vulnerability);
-    
+    //Higher-Level Secure Tropos
     elements.push(organization);
    
 		return elements;
@@ -453,12 +494,16 @@ let istar_main = function istar_main(graph)
     relations.push({
       "source":["actor","agent","role","goal","quality","task","resource"],
       "rel_source_target":"and",
-      "target":["goal-dependum","quality-dependum","task-dependum","resource-dependum"],
+      "target":[
+        "goal-dependum","quality-dependum","task-dependum","resource-dependum"
+      ],
       "style":"endArrow=none;"
       /* "style":"endArrow=capitald;" */
     });
     relations.push({
-      "source":["goal-dependum","quality-dependum","task-dependum","resource-dependum"],
+      "source":[
+        "goal-dependum","quality-dependum","task-dependum","resource-dependum"
+      ],
       "rel_source_target":"and",
       "target":["actor","agent","role","goal","quality","task","resource"],
       "style":"endArrow=none;"
@@ -550,7 +595,10 @@ let istar_main = function istar_main(graph)
     });
     //Goal-D, Resource-D, Task-D, Quality-D -> Security Constraint
     relations.push({
-      "source":["goal-dependum","quality-dependum","task-dependum","resource-dependum","goal","quality","task","resource","actor","agent","role"],
+      "source":[
+        "goal-dependum","quality-dependum","task-dependum", "resource-dependum",
+        "goal","quality","task","resource","actor","agent","role"
+      ],
       "rel_source_target":"and",
       "target":["secconstraint-dependum"],
       "style":"endArrow=none;"
@@ -559,7 +607,10 @@ let istar_main = function istar_main(graph)
     relations.push({
       "source":["secconstraint-dependum"],
       "rel_source_target":"and",
-      "target":["goal","quality","task","resource","goal-dependum","quality-dependum","task-dependum","resource-dependum","actor","agent","role"],
+      "target":[
+        "goal","quality","task","resource","goal-dependum", "quality-dependum",
+        "task-dependum", "resource-dependum", "actor", "agent", "role"
+      ],
       "style":"endArrow=none;"
     });
     return relations;
@@ -762,7 +813,10 @@ let istar_main = function istar_main(graph)
     graph.getModel().beginUpdate();
     try {
       if (checked === 'true') {
-        const boundaryCell = graph.insertVertex(parent, uuidv1(), '', currentCell.getGeometry().x, currentCell.getGeometry().y, 100, 100, 'shape=rectangle;fillColor=none;dashed=1;dashPattern=10 10;rounded=1;arcSize=15;');
+        const boundaryCell = 
+          graph.insertVertex(parent, uuidv1(), '', currentCell.getGeometry().x, 
+            currentCell.getGeometry().y, 100, 100, 'shape=rectangle;fillColor=none;dashed=1;dashPattern=10 10;rounded=1;arcSize=15;'
+          );
         boundaryCell.setConnectable(false);
         boundaryCell.setValue({'type':'boundary'});
         graph.groupCells(boundaryCell, 0, [currentCell]);
@@ -780,7 +834,9 @@ let istar_main = function istar_main(graph)
           delete currentCell.boundarySize;
         }
         //Apply the changes. The bounds indicate the absolute shape of the cell.
-        const bounds = new mxRectangle(boundaryCell.getGeometry().x, boundaryCell.getGeometry().y, boundaryW, boundaryH);
+        const bounds = 
+          new mxRectangle(boundaryCell.getGeometry().x, 
+            boundaryCell.getGeometry().y, boundaryW, boundaryH);
         graph.resizeCell(boundaryCell, bounds);
         //Find any edges that were promoted and remove them.
         const edgeCount = currentCell.getEdgeCount();
@@ -817,18 +873,32 @@ let istar_main = function istar_main(graph)
             //Within value is every edge coming or going from the <<old>> cell given by key.
             value.forEach(edge => {
               //For both the terminals, check if the reference is one of the cells that are destroyed, otherwise it is the normal one.
-              const sourceCell = graph.getModel().getCell(newCells.has(edge.source) ? newCells.get(edge.source) : edge.source);
+              const sourceCell = 
+                graph.getModel().getCell(
+                  newCells.has(edge.source) ? 
+                    newCells.get(edge.source) : edge.source
+                );
               const srcId = sourceCell.getId();
-              const targetCell = graph.getModel().getCell(newCells.has(edge.target) ? newCells.get(edge.target) : edge.target);
+              const targetCell = 
+                graph.getModel().getCell(
+                  newCells.has(edge.target) ? 
+                    newCells.get(edge.target) : edge.target
+                );
               const tgtId = targetCell.getId();
               //If the relation was already added, skip all of the code to add it.
               if(!done.some(pair => {
-                return (pair.t1 === srcId && pair.t2 === tgtId) || (pair.t1 === tgtId && pair.t2 === tgtId);
+                return (pair.t1 === srcId && pair.t2 === tgtId) || 
+                  (pair.t1 === tgtId && pair.t2 === tgtId);
               })){
                 console.log('sourceCell :', sourceCell);
                 console.log('targetCell :', targetCell);
-                const newEdge = graph.insertEdge(boundaryCell, uuidv1(), edge.value, sourceCell, targetCell, edge.style);
-                if(newEdge.getAttribute('type').includes('dependum') || edge.children !== null){
+                const newEdge = 
+                  graph.insertEdge(
+                    boundaryCell, uuidv1(), edge.value, sourceCell, targetCell, 
+                    edge.style
+                  );
+                if(newEdge.getAttribute('type').includes('dependum') || 
+                  edge.children !== null){
                   //Gather the state information of both the source and target elements.
                   const sourceState = graph.view.getState(sourceCell);
                   const sourceGeo = sourceCell.getGeometry();
@@ -836,19 +906,46 @@ let istar_main = function istar_main(graph)
                   const targetGeo = targetCell.getGeometry();
                   //Obtain the coordinates and offset to the center of the bounding rectangle.
                   //If the state is undefined, it is because it has just been created.
-                  const initX = sourceState !== undefined ? (sourceState.origin.x + (sourceGeo.width/2)) : (boundaryGeo.x + sourceGeo.getCenterX());
-                  const initY = sourceState !== undefined ? (sourceState.origin.y + (sourceGeo.height/2)) : (boundaryGeo.y + sourceGeo.getCenterY());
-                  const destX = targetState !== undefined ? (targetState.origin.x + (targetGeo.width/2)) : (boundaryGeo.x + targetGeo.getCenterX());
-                  const destY = targetState !== undefined ? (targetState.origin.y + (targetGeo.height/2)) : (boundaryGeo.y + targetGeo.getCenterY());
+                  const initX = 
+                    sourceState !== undefined ? 
+                      (sourceState.origin.x + (sourceGeo.width/2)) : 
+                      (boundaryGeo.x + sourceGeo.getCenterX());
+                  const initY = 
+                    sourceState !== undefined ? 
+                      (sourceState.origin.y + (sourceGeo.height/2)) : 
+                      (boundaryGeo.y + sourceGeo.getCenterY());
+                  const destX = 
+                    targetState !== undefined ? 
+                      (targetState.origin.x + (targetGeo.width/2)) : 
+                      (boundaryGeo.x + targetGeo.getCenterX());
+                  const destY = 
+                    targetState !== undefined ? 
+                      (targetState.origin.y + (targetGeo.height/2)) : 
+                      (boundaryGeo.y + targetGeo.getCenterY());
                   //Calculate the angle given by the edge in its current orientation.
-                  const angle = (Math.atan2(destY-initY,destX-initX) * (180/Math.PI)).toFixed(0);
+                  const angle = 
+                    (Math.atan2(destY-initY,destX-initX) * 
+                      (180/Math.PI)).toFixed(0);
                   //Insert a new element onto the the edge with the calculated angle.
                   const childPresent = (edge.children !== null);
-                  const style = childPresent ? edge.children[0].getStyle() : 'shape=capitald;fillColor=#FFFFFF;rotation='+angle+';selectable=0;';
-                  const {height: edgeChildGeoX, width: edgeChildGeoY} = childPresent ? edge.children[0].getGeometry() : {height: 20, width: 20};
-                  const capitald = graph.insertVertex(newEdge,uuidv1(),null,0,0, edgeChildGeoX, edgeChildGeoY, style);
+                  const style = 
+                    childPresent ? 
+                      edge.children[0].getStyle() : 
+                      'shape=capitald;fillColor=#FFFFFF;rotation='
+                        +angle+';selectable=0;';
+                  const {height: edgeChildGeoX, width: edgeChildGeoY} = 
+                    childPresent ? 
+                      edge.children[0].getGeometry() : {height: 20, width: 20};
+                  const capitald = 
+                    graph.insertVertex(
+                      newEdge, uuidv1(), null, 0, 0, edgeChildGeoX, 
+                      edgeChildGeoY, style
+                    );
                   //Set the offset of the element so that it is centered. 
-                  capitald.geometry.offset = childPresent ? edge.children[0].getGeometry().offset : new mxPoint(-10, -10);
+                  capitald.geometry.offset = 
+                    childPresent ? 
+                      edge.children[0].getGeometry().offset : 
+                      new mxPoint(-10, -10);
                   capitald.geometry.relative = true;
                   //Set the element as unconnectable.
                   capitald.connectable = false;
@@ -888,9 +985,12 @@ let istar_main = function istar_main(graph)
                   const target = edge.getTerminal(false).getId();
                   const style = edge.getStyle();
                   const type = edge.getAttribute('type');
-                  const children = edge.getChildCount() > 0 ? [...edge.children] : null;
+                  const children = 
+                    edge.getChildCount() > 0 ? [...edge.children] : null;
                   const geo = edge.getGeometry();
-                  innerEdges.push({value, isSource, source, target, style, type, children, geo});
+                  innerEdges.push(
+                    {value, isSource, source, target, style, type, children, geo}
+                  );
                 }
               }
               //Now we map every id to its corresponding cell and edges so that we can reconstruct it later.
@@ -907,9 +1007,19 @@ let istar_main = function istar_main(graph)
               const terminal = edge.isSource ? edge.target : edge.source;
               //The only allowed external connections are done with dependums.
               if(!innerElements.has(terminal)){
-                const sourceCell = edge.isSource ? currentCell : graph.getModel().getCell(edge.source);
-                const targetCell = edge.isSource ? graph.getModel().getCell(edge.target) : currentCell;
-                const newEdge = graph.insertEdge(mainparent, uuidv1(), edge.value, sourceCell, targetCell, edge.style);
+                const sourceCell = 
+                  edge.isSource ? 
+                    currentCell : 
+                    graph.getModel().getCell(edge.source);
+                const targetCell = 
+                  edge.isSource ? 
+                    graph.getModel().getCell(edge.target) : 
+                    currentCell;
+                const newEdge = 
+                  graph.insertEdge(
+                    mainparent, uuidv1(), edge.value, sourceCell, targetCell, 
+                    edge.style
+                  );
                 newEdge.promotedEdge = true;
                 //Gather the state information of both the source and target elements.
                 const sourceState = graph.view.getState(sourceCell);
@@ -920,11 +1030,19 @@ let istar_main = function istar_main(graph)
                 const destX = targetState.x + (targetState.width/2);
                 const destY = targetState.y + (targetState.height/2);
                 //Calculate the angle given by the edge in its current orientation.
-                const angle = (Math.atan2(destY-initY,destX-initX) * (180/Math.PI)).toFixed(0);
+                const angle = 
+                  (Math.atan2(destY-initY,destX-initX) * 
+                    (180/Math.PI)).toFixed(0);
                 //Determine the element that will be added over the edge.
-                const affects = ['rel_attack_vulnerability'].includes(edge.type);
+                const affects = 
+                  ['rel_attack_vulnerability'].includes(edge.type);
                 //Insert a new element onto the the edge with the calculated angle.
-                const capitald = graph.insertVertex(newEdge,uuidv1(),null,0,0,20,20,'shape='+(affects ? 'affects':'capitald')+';fillColor=#FFFFFF;rotation='+angle+';selectable=0;');
+                const capitald = 
+                  graph.insertVertex(
+                    newEdge, uuidv1(), null, 0, 0, 20, 20,
+                    'shape='+(affects ? 'affects':'capitald')+
+                      ';fillColor=#FFFFFF;rotation='+angle+';selectable=0;'
+                  );
                 //Set the offset of the element so that it is centered. 
                 capitald.geometry.offset = new mxPoint(-10, -10);
                 capitald.geometry.relative = true;
@@ -940,7 +1058,8 @@ let istar_main = function istar_main(graph)
         //We modify the actor cell to have the information of both its boundary cell and that of the inner elements.
         currentCell.elements = innerElements;
         currentCell.relations = relations;
-        currentCell.boundarySize = {height: parentGeo.height, width: parentGeo.width};
+        currentCell.boundarySize = 
+          {height: parentGeo.height, width: parentGeo.width};
 
         //These cells are fundamentally different to those that are returned by ungroupCells.
         //They retain their properties though. I suspect they are cloned from the first ones.
@@ -992,13 +1111,16 @@ let istar_main = function istar_main(graph)
           const sourceType = source.getAttribute('type');
           const destination = edge.getTerminal(false);
           const destType = destination.getAttribute('type');
-          if(source !== target && admittedTypes.includes(sourceType) && admittedTypes.includes(destType)){
+          if(source !== target && admittedTypes.includes(sourceType) && 
+            admittedTypes.includes(destType)){
             //Set the arrow style based on the incoming value of the select
-            graph.setCellStyles(mxConstants.STYLE_ENDARROW, this.value === 'and' ? 'dash' : 'block', [edge]);
+            graph.setCellStyles(
+              mxConstants.STYLE_ENDARROW, 
+              this.value === 'and' ? 'dash' : 'block', [edge]
+            );
             if(edge !== currentCell){
-              const edit = new mxCellAttributeChange(
-                edge, "refinement",
-                this.value);
+              const edit = 
+                new mxCellAttributeChange(edge, "refinement", this.value);
               graph.getModel().execute(edit);
             }
           }
@@ -1055,7 +1177,12 @@ let istar_main = function istar_main(graph)
               const sourceParentGeo = sourceParent.getGeometry();
               const sourceParentValue = sourceParent.getValue();
               //Check if the cell is inside a boudary.
-              if(sourceParentValue !== undefined && ((sourceParentValue.type !== undefined && sourceParentValue.type  === 'boundary') || sourceParent.getAttribute('type') === 'organization')){
+              if(
+                sourceParentValue !== undefined && 
+                  ((sourceParentValue.type !== undefined && 
+                      sourceParentValue.type  === 'boundary') || 
+                    sourceParent.getAttribute('type') === 'organization'
+                )){
                 //If the cell is inside a boudary, its position is then given by the 
                 //position of the boundary + its offset + the center of its bounding rectangle.
                 //The state allows us to calculate the current size of the element and
@@ -1075,7 +1202,12 @@ let istar_main = function istar_main(graph)
               const targetParentGeo = targetParent.getGeometry();
               const targetParentValue = targetParent.getValue();
               //Check if the target cell is inside a boudary.
-              if(targetParentValue !== undefined && ((targetParentValue.type !== undefined && targetParentValue.type  === 'boundary') || targetParent.getAttribute('type') === 'organization')){
+              if(
+                targetParentValue !== undefined && 
+                  ((targetParentValue.type !== undefined && 
+                    targetParentValue.type  === 'boundary') || 
+                  targetParent.getAttribute('type') === 'organization'
+                )){
                 //Same as above...
                 //const targetStateShape = graph.view.getState(target);
                 destX = targetParentGeo.x + targetGeo.x + (targetGeo.width/2);
@@ -1092,7 +1224,8 @@ let istar_main = function istar_main(graph)
               console.log('destX :', destX);
               console.log('destY :', destY); */
               //Calculate the angle given by the line connecting the two points.
-              const angle = (Math.atan2(destY-initY,destX-initX) * (180/Math.PI)).toFixed(0);
+              const angle = 
+              (Math.atan2(destY-initY,destX-initX) * (180/Math.PI)).toFixed(0);
               /* console.log('angle :', angle); */
               //Set the style of the element within the edge to the calculated rotation.
               graph.setCellStyles(mxConstants.STYLE_ROTATION, angle, [capitald])
