@@ -1,22 +1,22 @@
-let istar_main = function istar_main(graph)
+let istarMain = function istarMain (graph)
 {
-  istar_custom_markers();
-  istar_custom_events();
-  istar_custom_graph_overrides();
-  istar_constraints();
+  istarCustomMarkers();
+  istarCustomEvents();
+  istarCustomGraphOverrides();
+  istarConstraints();
 	var data={};
 	data["m_type"]="normal"; //custom type
-	data["m_elements"]=istar_elements(); //custom elements
-  data["m_attributes"]=istar_attributes(); //custom attributes
-  data["m_relations"]=istar_relations(); //custom relations
-  data["m_properties_styles"]=istar_properties_styles(); //custom properties styles
+	data["m_elements"]=istarElements(); //custom elements
+  data["m_attributes"]=istarAttributes(); //custom attributes
+  data["m_relations"]=istarRelations(); //custom relations
+  data["m_properties_styles"]=istarPropertiesStyles(); //custom properties styles
   data["m_labels"]=null; //custom labels
-  data["m_constraints_ic"]=istar_constraints_in_creation();
+  data["m_constraints_ic"]=istarConstraintsInCreation();
   data["m_clon_cells"]=null; //custom clon cells
-  data["m_relation_styles"]=istar_relation_styles();
+  data["m_relation_styles"]=istarRelationStyles();
 	return data;
 	
-	function istar_constraints(){
+	function istarConstraints(){
     graph.multiplicities=[]; //reset multiplicities
     /*
 		graph.multiplicities.push(new mxMultiplicity(
@@ -66,7 +66,7 @@ let istar_main = function istar_main(graph)
     
   }
   
-  function istar_custom_markers(){
+  function istarCustomMarkers(){
     //It seems pe is the location where the "arrow" should begin.
     //unitX and unitY seems to be the x,y value associated with the angle that would 
     //be made on a unit circle if the edge were the hypothenuse of a triangle on a unit circle.
@@ -128,12 +128,12 @@ let istar_main = function istar_main(graph)
   };
 
   //Temporary Workaround to the setup Events change...
-  function istar_custom_events(){
+  function istarCustomEvents(){
     //This function fires when a cell is moved and makes sure that the dependum custom icon is correctly oriented.
     graph.addListener(mxEvent.MOVE_CELLS, reorientElement);
   };
 
-  function istar_custom_graph_overrides(){
+  function istarCustomGraphOverrides(){
     let cellLabelChanged = graph.cellLabelChanged;
     graph.cellLabelChanged = function(cell, newValue, autoSize)
     {
@@ -276,7 +276,7 @@ let istar_main = function istar_main(graph)
     };
   }
 
-	function istar_elements(){
+	function istarElements(){
     let actor = 
       {src:projectPath+"images/models/istar/Actor.png", wd:100, hg:100, 
         style:"shape=actor;perimeter=ellipsePerimeter;html=1;whiteSpace=wrap;overflow=visible;fontColor=black;", 
@@ -359,7 +359,7 @@ let istar_main = function istar_main(graph)
 		return elements;
 	}
 
-	function istar_attributes(){
+	function istarAttributes(){
     let attributes=[];
 		attributes.push({
 			"types":["actor","role","agent"],
@@ -378,7 +378,7 @@ let istar_main = function istar_main(graph)
 		return attributes;
   }
 
-  function istar_relations(){
+  function istarRelations(){
     let relations=[];
     //Actor relations
     relations.push({
@@ -483,7 +483,7 @@ let istar_main = function istar_main(graph)
     return relations
   }
 
-  function istar_relation_styles(){
+  function istarRelationStyles(){
     let relations=[];
     relations.push({
       "source":["actor","agent","role"],
@@ -616,7 +616,7 @@ let istar_main = function istar_main(graph)
     return relations;
   }
   
-  function istar_properties_styles(){
+  function istarPropertiesStyles(){
     return {
       //Actor
       "actor":[{
@@ -775,7 +775,7 @@ let istar_main = function istar_main(graph)
     }
   }
 
-  function istar_custom_methods(pos){
+  function istarCustomMethods(pos){
 		let methods=[]
 		methods.push(function(_prototype, cell){
       if(cell !== null && cell.getAttribute('type') !== "organization"){
@@ -789,12 +789,12 @@ let istar_main = function istar_main(graph)
 		return methods[pos];
 	}
 
-  function istar_constraints_in_creation(){
+  function istarConstraintsInCreation(){
 		let constraints_ic={};
 		constraints_ic={
-      "actor":istar_custom_methods(0),
-      "agent":istar_custom_methods(0),
-      "role":istar_custom_methods(0)
+      "actor":istarCustomMethods(0),
+      "agent":istarCustomMethods(0),
+      "role":istarCustomMethods(0)
 		};
 		return constraints_ic;
 	}
@@ -1238,4 +1238,4 @@ let istar_main = function istar_main(graph)
 	
 }
 
-export default istar_main
+export default istarMain 
