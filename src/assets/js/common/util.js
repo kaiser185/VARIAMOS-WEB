@@ -118,6 +118,30 @@ export function modalComponentInformation(structure, idx_cat, idx_subcat){
                 str = str + ']';
                 input.innerText = str;
             }
+        } else if(element.element_type === 'button') {
+            input = document.createElement('div');
+            const b1 = document.createElement('button');
+            b1.innerHTML = element.button1_txt !== undefined ? element.button1_txt.bold() : '';
+            b1.addEventListener('click', () => {
+                const count = (structure.basic_information.functions.length - 1)/2 + 1;
+                structure.basic_information.functions.push({element_id: `function${count}-name`, element_type: 'text'},{element_id: `function${count}-Description`, element_type: 'text'})
+                let main_modal_body = document.getElementById('main_modal_body');
+                main_modal_body.innerHTML="";
+                let c_body = modalComponentInformation(structure, idx_cat, idx_subcat);
+                main_modal_body.appendChild(c_body);
+            });
+            const b2 = document.createElement('button');
+            b2.innerHTML = element.button2_txt !== undefined ? element.button2_txt.bold() : '';
+            b2.addEventListener('click', () => {
+                structure.basic_information.functions.pop();
+                structure.basic_information.functions.pop();
+                let main_modal_body = document.getElementById('main_modal_body');
+                main_modal_body.innerHTML="";
+                let c_body = modalComponentInformation(structure, idx_cat, idx_subcat);
+                main_modal_body.appendChild(c_body);
+            });
+            input.appendChild(b1);
+            input.appendChild(b2);
         } else {
             alert("A problem occurred");
         }

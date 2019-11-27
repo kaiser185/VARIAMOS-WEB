@@ -260,11 +260,13 @@ let setup_events = function setup_events(graph){
                         {element_id: 'interface-type', element_type: 'text'}, 
                         {element_id: 'interface-description', element_type: 'text'},
                         {element_id: 'behavior', element_type: 'combo', element_items:['Static','Dynamic']},
-                        {element_id: 'interface-function', element_type: 'label'},
-                        {element_id: 'function-name', element_type: 'text'},
-                        {element_id: 'function-Description', element_type: 'text'}
-                    
+                        
                     ],
+                    functions: [
+                        {element_id: 'interface-function', element_type: 'button', button1_txt: 'Create new Function', button2_txt: 'Delete the last function'},
+                        {element_id: 'function1-name', element_type: 'text'},
+                        {element_id: 'function1-Description', element_type: 'text'}
+                    ]
                 }
             };
         }   
