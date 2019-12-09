@@ -1132,14 +1132,17 @@ let istarMain = function istarMain (graph)
   }
 
   /**
-   * This function reorients the "D" elements that exist as children of dependum edges. 
+   * This function reorients elements that exist as children of edges.
+   * It calculates the rotation of the elements in the same way that 
+   * it is done in /istar/setup_relations.js 
    * @param {Object} _sender This is the graph that generated the event.
    * @param {Object} evt This is the event itself, it contains all the parameters of the associated MOVED_CELLS event.
    */
-  // TODO: CHECK CORRECTNESS
   function reorientElement(_sender, evt) {
     //Obtain the moved cells.
     const cells = evt.getProperty('cells');
+    const dx = evt.getProperty('dx');
+    const dy = evt.getProperty('dy');
     //For each and every moved cell we must reorient the dependum edges leading into, out of them.
     cells.forEach(cell => {
       //If the cell we moved turns out to be bounday cell
@@ -1153,7 +1156,14 @@ let istarMain = function istarMain (graph)
       if(childCount > 0){
         for(let i = 0; i < childCount; i++){
           const child = cell.getChildAt(i);
-          elements.push(child);
+          const childChildren = child.getChildCount();
+          if(childChildren > 0){
+            for(let j = 0; j < childChildren; j++){
+              elements.push(child.getChildAt(j));
+            }
+          } else {
+            elements.push(child);
+          }
         }
       } else {
         elements.push(cell);
@@ -1165,67 +1175,29 @@ let istarMain = function istarMain (graph)
           element.edges.forEach(edge => {
             //Check if the edge is a connection to a dependum element, otherwise ignore it.
             if(/*edge.getAttribute('type').includes('dependum') && edge.getChildCount() > 0*/ edge.getChildCount() > 0){
-              //These are the coordinates that will be used to calculate the angle to which
-              //the marker will be rotated to. init for the source, dest for the target.
-              let initX, initY, destX, destY;
+              
               //Get the reference to the dependum marker, it is always the only child of the edge.
               let capitald = edge.getChildAt(0);
               //Get all the information for the source cell and its parent.
               const source = edge.getTerminal(true);
-              const sourceGeo = source.getGeometry();
-              const sourceParent = source.getParent();
-              const sourceParentGeo = sourceParent.getGeometry();
-              const sourceParentValue = sourceParent.getValue();
-              //Check if the cell is inside a boudary.
-              if(
-                sourceParentValue !== undefined && 
-                  ((sourceParentValue.type !== undefined && 
-                      sourceParentValue.type  === 'boundary') || 
-                    sourceParent.getAttribute('type') === 'organization'
-                )){
-                //If the cell is inside a boudary, its position is then given by the 
-                //position of the boundary + its offset + the center of its bounding rectangle.
-                //The state allows us to calculate the current size of the element and
-                //thus we can obtain the center of the bounding rectangle.
-                //const sourceStateShape = graph.view.getState(source);
-                initX = sourceParentGeo.x + sourceGeo.x + (sourceGeo.width/2);
-                initY = sourceParentGeo.y + sourceGeo.y + (sourceGeo.height/2);
-              } else {
-                //If the cell is outside a boundary, its position is given by its geometry.
-                initX = sourceGeo.getCenterX();
-                initY = sourceGeo.getCenterY();
-              }
-              //Get all the information for the target cell and its parent.
               const target = edge.getTerminal(false);
-              const targetGeo = target.getGeometry();
-              const targetParent = target.getParent();
-              const targetParentGeo = targetParent.getGeometry();
-              const targetParentValue = targetParent.getValue();
-              //Check if the target cell is inside a boudary.
-              if(
-                targetParentValue !== undefined && 
-                  ((targetParentValue.type !== undefined && 
-                    targetParentValue.type  === 'boundary') || 
-                  targetParent.getAttribute('type') === 'organization'
-                )){
-                //Same as above...
-                //const targetStateShape = graph.view.getState(target);
-                destX = targetParentGeo.x + targetGeo.x + (targetGeo.width/2);
-                destY = targetParentGeo.y + targetGeo.y + (targetGeo.height/2);
-              } else {
-                //Same as above...
-                destX = targetGeo.getCenterX();
-                destY = targetGeo.getCenterY();
-              }
-              /* console.log('dx :', dx);
-              console.log('dy :', dy);
-              console.log('initX :', initX);
-              console.log('initY :', initY);
-              console.log('destX :', destX);
-              console.log('destY :', destY); */
+              const ss = graph.view.getState(source);
+              const ts = graph.view.getState(target);
+              //Check which side corresponds to the moved element.
+              const isSource = source === element;
+
+              //These are the coordinates that will be used to calculate the angle to which
+              //the marker will be rotated to. init for the source, dest for the target.
+              //The absolute position is correct, but is has to be offset by the move.
+              const initX = ss.origin.x + (ss.width / 2) + (isSource ? dx : 0);
+              const initY = ss.origin.y + (ss.height / 2) + (isSource ? dy : 0);
+              const destX = ts.origin.x + (ts.width / 2) + (!isSource ? dx : 0);
+              const destY = ts.origin.y + (ts.height / 2) + (!isSource ? dy : 0);
+
               //Calculate the angle given by the line connecting the two points.
               const angle = 
-              (Math.atan2(destY-initY,destX-initX) * (180/Math.PI)).toFixed(0);
+                (Math.atan2(destY-initY,destX-initX) * 
+                  (180/Math.PI)).toFixed(0);
               /* console.log('angle :', angle); */
               //Set the style of the element within the edge to the calculated rotation.
               graph.setCellStyles(mxConstants.STYLE_ROTATION, angle, [capitald])
