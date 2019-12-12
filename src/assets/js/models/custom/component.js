@@ -89,27 +89,35 @@ let component_main = function component_main(graph)
 	}
 
 	function component_custom_markers(){
-		mxMarker.addMarker('requires', function(canvas, shape, type, pe, unitX, unitY, size, source, sw, filled){
+		mxMarker.addMarker('requiresmodified', function(canvas, shape, type, pe, unitX, unitY, size, source, sw, filled){
 			//unitX, unitY correspond to the representation of the orientation as a point
 			//on a unit circle. (It is essential to rememeber that the y axis increases towards the bottom of the page.)
 			//Size is constant defined by the library
 			//nx, ny are then the "augmented" vector on the unit circle by a given amount.
-			let nx = unitX * (size + sw + 10);
-			let ny = unitY * (size + sw + 10);
-	  
-			//Here canvas is an instance of mxSvgCanvas2D which reimplements part of the HTML5 canvas library,
-			//particularily the API.
-			//pe corresponds to the (x,y) coordinates of the line's endpoint.
-			//The division by 2 is a scaling factor.
-			
+			//Here d1 controls the distance by which the both the tips of the semicircle
+			//are separated from the endpoint of the edge within the same axis as the edge.
+			//d2 controls the distance by which the endpoints are separated on the axis
+			//perpendicular to the line given by the edge.
+			//
+			const d1 = 20;
+			const d2 = 15;
+			const nx = unitX * d1;
+			const ny = unitY * d1;
+			const m = ny / nx;
+			const m_perp = -1 * (1/m); 
+			const pe_d = new mxPoint(pe.x + nx, pe.y + ny);
+			const pe_anti_d = new mxPoint(pe.x - nx, pe.y - ny);
+
 			return function() {
+			  const x1 = (d2/(Math.sqrt(Math.pow(m_perp,2) + 1))) + pe_d.x ;
+			  const y1 = (m_perp * (x1 - pe_d.x)) + pe_d.y;
+			  const x2 = pe_anti_d.x;
+			  const y2 = pe_anti_d.y;
+			  const x3 = (-d2/(Math.sqrt(Math.pow(m_perp,2) + 1))) + pe_d.x;
+			  const y3 = (m_perp * (x3 - pe_d.x)) + pe_d.y;
 			  canvas.begin();
-			  let x1 = pe.x - nx /* / 2 */ - ny /* / 2 */;
-			  let y1 = pe.y - ny /* / 2  */+ nx /* / 2 */;
 			  canvas.moveTo(x1, y1);
-			  let x2 = pe.x + ny /* / 2 */ -  nx /* / 2 */;
-			  let y2 = pe.y - ny/*  / 2 */ - nx /* / 2 */;
-			  canvas.lineTo(x2, y2);
+			  canvas.quadTo(x2,y2,x3,y3);
 			  canvas.stroke();
 			}
 		})
@@ -127,7 +135,7 @@ let component_main = function component_main(graph)
 			"source":["component"],
 			"rel_source_target":"and",
 			"target":["interface"],
-			"style":"endArrow=requires"
+			"style":"endArrow=requiresmodified;targetPerimeterSpacing=20;"
 		});
 		relations.push({
 			"source":["interface"],
